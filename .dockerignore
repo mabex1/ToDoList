@@ -1,0 +1,10 @@
+bin/
+obj/
+Migrations/
+*.user
+*.suo
+.vs/
+.git/
+.gitignore
+README.md
+logs/

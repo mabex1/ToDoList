@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # postgres
+  db:
+    image: postgres:15
+    container_name: todolist_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tododb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  # adminer
+  adminer:
+    image: adminer:latest
+    container_name: todolist_adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: always
+
+  #api
+  api:
+    build: .
+    container_name: todolist_api
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Host=db;Database=tododb;Username=postgres;Password=112233
+    depends_on:
+      - db
+    restart: always
+    volumes:
+      - ./logs:/app/logs 
+volumes:
+  postgres_data:
