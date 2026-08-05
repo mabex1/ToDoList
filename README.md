@@ -3,7 +3,7 @@
 A lightweight and high-performance backend application for managing a task list, built using **ASP.NET Minimal APIs**. This project represents a migration from the previous console-based implementation to a web service.
 
 ## Features
-* **REST API Architecture:** Implements standard HTTP methodologies without the overhead of the traditional MVC pattern.
+* **REST API Architecture:** Implements standard HTTP methodologies.
 * **Full CRUD Functionality:** Supports creating, reading, updating (status toggling), and deleting tasks.
 * **Data Persistence:** Automatically serializes and deserializes application state using a local `tasks.json` file via `System.Text.Json`.
 * **Error Handling:** Validates task identifiers and returns proper HTTP status codes (e.g., 404 Not Found) instead of risking runtime exceptions.
