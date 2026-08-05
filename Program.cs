@@ -17,6 +17,12 @@ builder.Services.AddSingleton<TaskService>();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+}
+
 app.MapGet("/", () => "Hello World!");
 app.MapGet("/tasks", (TaskService service) => service.GetAll());
 app.MapGet("/tasks/{id}", (int id, TaskService service) => service.GetById(id));
