@@ -39,5 +39,13 @@ services:
     restart: always
     volumes:
       - ./logs:/app/logs 
+  
+  frontend:
+    build: ./frontend # Путь к папке с фронтендом и его Dockerfile
+    container_name: web_frontend
+    ports:
+      - "80:80"        # Пробрасываем наружу порт 80
+    depends_on:
+      - api
 volumes:
   postgres_data:
