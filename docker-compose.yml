@@ -41,10 +41,10 @@ services:
       - ./logs:/app/logs 
   
   frontend:
-    build: ./frontend # Путь к папке с фронтендом и его Dockerfile
+    build: ./todolist-frontend
     container_name: web_frontend
     ports:
-      - "80:80"        # Пробрасываем наружу порт 80
+      - "80:80"
     depends_on:
       - api
 volumes:
